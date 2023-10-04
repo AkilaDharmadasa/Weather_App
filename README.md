@@ -8,3 +8,5 @@ Commands for docker:
 
 "docker run -it -p --rm --name vueapp-1 image-1"
 (replace vueapp-1 with a name you want)
+
+Then go to the browser and go to "localhost:8080" 
