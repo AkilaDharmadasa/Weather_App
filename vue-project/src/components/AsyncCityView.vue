@@ -5,7 +5,7 @@
             items-center gap-4 text-white py-2 text-2xl">
                 <p>{{ weatherData.name }}, {{ weatherData.sys.country }}</p>
             </div>
-            
+
             <div class="container mx-auto flex flex-col 
             items-center gap-4 text-white text-md">
                 <p>{{ formattedTime }}</p>
@@ -89,26 +89,27 @@ const getWeatherData = async () => {
         const localTime_sunset = new Date(utc_sunset);
 
         // Update the formattedTime ref with the local time
-        formattedTime.value = localTime.toLocaleTimeString('en-US', {
+        const istFormatter = new Intl.DateTimeFormat('en-IN', {
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,
         });
+        formattedTime.value = istFormatter.format(localTime);
 
-        formattedTime.value += `, ${localTime.toLocaleDateString('en-US', {
+        formattedTime.value += `, ${localTime.toLocaleDateString('en-IN', {
             month: 'short',
             day: 'numeric',
         })}`;
 
         // Update the formattedsunrise ref with the local time
-        formattedsunrise.value = localTime_sunrise.toLocaleTimeString('en-US', {
+        formattedsunrise.value = localTime_sunrise.toLocaleTimeString('en-IN', {
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,
         });
 
         // Update the formattedsunset ref with the local time
-        formattedsunset.value = localTime_sunset.toLocaleTimeString('en-US', {
+        formattedsunset.value = localTime_sunset.toLocaleTimeString('en-IN', {
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,

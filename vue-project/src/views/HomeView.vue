@@ -69,13 +69,13 @@ const fetchWeatherData = async () => {
       const localTime = new Date(utc);
 
       // Update the formattedTime ref with the local time
-      formattedTime.value = localTime.toLocaleTimeString('en-US', {
+      formattedTime.value = localTime.toLocaleTimeString('en-IN', {
         hour: 'numeric',
         minute: 'numeric',
         hour12: true,
       });
 
-      formattedTime.value += `, ${localTime.toLocaleDateString('en-US', {
+      formattedTime.value += `, ${localTime.toLocaleDateString('en-IN', {
         month: 'short',
         day: 'numeric',
       })}`;
