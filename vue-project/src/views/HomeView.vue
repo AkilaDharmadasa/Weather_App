@@ -54,7 +54,7 @@ const fetchWeatherData = async () => {
     const weatherResponses = await Promise.all(
       cityCodes.map(cityCode => {
         return axios.get(
-          `http://api.openweathermap.org/data/2.5/weather?id=${cityCode}&units=metric&appid=67bdb64e899e67757ba44c302ec2a856`
+          `http://api.openweathermap.org/data/2.5/weather?id=${cityCode}&units=metric&appid=${import.meta.env.VITE_APP_API_KEY}`
 
         );
       }),

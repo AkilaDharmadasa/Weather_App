@@ -68,7 +68,7 @@ const getWeatherData = async () => {
 
     try {
         const weatherData = await axios.get(
-            `http://api.openweathermap.org/data/2.5/weather?id=${route.query.id}&units=metric&appid=67bdb64e899e67757ba44c302ec2a856`
+            `http://api.openweathermap.org/data/2.5/weather?id=${route.query.id}&units=metric&appid=${import.meta.env.VITE_APP_API_KEY}`
         );
 
         console.log(weatherData.data)
