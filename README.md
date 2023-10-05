@@ -3,12 +3,13 @@ This is a vueJS application to view real time weather of a few cities
 
 <h1> API KEY of openweathermap.org </h1>
 My personel Api key is not shared 
-create a .env file in the prject folder (vue-project  ---> .env) like in .example
-Then add your own key to a variable named 
-VITE_APP_API_KEY= 00000000000000
+create a .env file in the prject folder (vue-project  ---> .env) like in .env.example
+Then add your own key to a variable named VITE_APP_API_KEY
 
+eg:
+VITE_APP_API_KEY= 00000000000000
 <!-- replace 00000000000000 with api key  -->
-Add your api key to "00000000000000"
+Add your api key replacing "00000000000000" in the created .env file
 
 <h2>Commands for docker:</h2>
 
