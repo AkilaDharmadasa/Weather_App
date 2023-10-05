@@ -8,7 +8,7 @@ Then add your own key to a variable named
 VITE_APP_API_KEY= 00000000000000
 
 <!-- replace 00000000000000 with api key  -->
-Add your api key to
+Add your api key to "00000000000000"
 
 <h2>Commands for docker:</h2>
 
