@@ -22,4 +22,4 @@ Note: the application will not work without the VITE_APP_API_KEY
 
 Then go to the browser and go to "localhost:8080" <be>
 
-<img src"./vue-project/public/images/dashboard">
+<img src"vue-project/public/images/dashboard">
