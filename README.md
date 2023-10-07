@@ -1,7 +1,7 @@
 # Weather_App
 This is a Vue application to view real-time weather of a few cities
 
-<h1> API KEY of openweathermap.org </h1>
+<h1> API KEY of <a href="https://openweathermap.org/">openweathermap.org</a></h1>
 My personal Api key is not shared. <br>
 Create a .env file in the project folder (vue-project  ---> .env) like in .env.example <br>
 Then add your own key to a variable named VITE_APP_API_KEY
@@ -21,7 +21,7 @@ Note: the application will not work without the VITE_APP_API_KEY
 (replace vueapp-1 with a name you want)
 
 Then go to the browser and go to "localhost:8080" <be>
-<h3>Dashboard</h3><br>
+<h3>App Views</h3><br>
 <img src="vue-project/public/images/dashboard.png"> <be>
-<h3>City Info</h3><br>
+<br>
 <img src="vue-project/public/images/city.png">
