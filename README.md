@@ -21,5 +21,7 @@ Note: the application will not work without the VITE_APP_API_KEY
 (replace vueapp-1 with a name you want)
 
 Then go to the browser and go to "localhost:8080" <be>
-
-<img src="vue-project/public/images/dashboard.png">
+<h3>Dashboard</h3><br>
+<img src="vue-project/public/images/dashboard.png"> <be>
+<h3>City Info</h3><br>
+<img src="vue-project/public/images/city.png">
