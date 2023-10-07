@@ -6,27 +6,27 @@
           <div
             class="city-card bg-weather-secondary text-black hover:text-white transition duration-200 ease-in-out"
             v-for="city in weatherData" :key="city.id" @click="previewCity(city.id)">
-            <div class="city-temp ">
-              <h2>
-                {{ city.name }} , {{ city.sys.country }}
-              </h2>
-
-              <p style="font-size: x-large; font-weight: bold;">
-                {{ city.main.temp }}°c
+            <div class="city-bg">
+              <div class="city-temp">
+                <h2>
+                  {{ city.name }} , {{ city.sys.country }}
+                </h2>
+                <p style="font-size: x-large; font-weight: bold;">
+                  {{ city.main.temp }}°c
+                </p>
+              </div>
+            </div>
+            <div class=" bg-weather-data px-6 pt-2 round-bottom ">
+              <p class="text-white">
+                {{ city.formattedTime }}
+              </p>
+              <h4 class="text-white">
+                City ID: {{ city.id }}
+              </h4>
+              <p class="text-white">
+                Discription: {{ city.weather[0].description }}
               </p>
             </div>
-            <p>
-              {{ city.formattedTime }}
-            </p>
-            <h4 class="text-white">
-              City ID: {{ city.id }}
-            </h4>
-            <p class="text-white">
-              Discription: {{ city.weather[0].description }}
-            </p>
-
-
-
           </div>
         </div>
       </main>
