@@ -20,4 +20,6 @@ Note: the application will not work without the VITE_APP_API_KEY
 "docker run -it -p --rm --name vueapp-1 image-1"
 (replace vueapp-1 with a name you want)
 
-Then go to the browser and go to "localhost:8080" 
+Then go to the browser and go to "localhost:8080" <be>
+
+<img src"./vue-project/public/images/dashboard">
