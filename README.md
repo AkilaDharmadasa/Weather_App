@@ -1,14 +1,16 @@
 # Weather_App
-This is a vueJS application to view real time weather of a few cities
+This is a Vue application to view real-time weather of a few cities
 
 <h1> API KEY of openweathermap.org </h1>
-My personel Api key is not shared 
-create a .env file in the prject folder (vue-project  ---> .env) like in .example
-Then add your own key to a variable named 
-VITE_APP_API_KEY= 00000000000000
+My personal Api key is not shared. <br>
+Create a .env file in the project folder (vue-project  ---> .env) like in .env.example <br>
+Then add your own key to a variable named VITE_APP_API_KEY
 
+eg:
+VITE_APP_API_KEY= 00000000000000
 <!-- replace 00000000000000 with api key  -->
-Add your api key to
+Add your api key replacing "00000000000000" in the created .env file <br>
+Note: the application will not work without the VITE_APP_API_KEY
 
 <h2>Commands for docker:</h2>
 
