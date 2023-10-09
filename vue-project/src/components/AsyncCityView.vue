@@ -15,22 +15,34 @@
                 <hr class=" border-white border-opacity-200 border w-full " />
             </div>
 
-            <div class="body">
-                <div class="current-conditions px-20 pb-5">
-                    <img :src="iconUrl"
-                        class="city-card2 bg-blue-400 hover:bg-opacity-50 transition duration-200 ease-in-out hover:backdrop-blur-blur" />
+            <div class="body flex flex-col gap-4">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-10 px-24 pb-5 items-center ">
+                    <div class=" flex flex-col items-center justify-center m-5">
+                        <img :src="iconUrl" class="city-card2 bg-blue-400 hover:bg-opacity-50 transition 
+                        duration-200 ease-in-out hover:backdrop-blur-blur w-32 flex flex-col items-center justify-center" />
+                        <div class="text-xl flex flex-col items-center justify-center w-32">
+                            {{ weatherData.weather[0].description }}
+                        </div>
+                    </div>
+
                     <!-- <img src="../assets/images/could1.png" alt="Weather icon"> -->
-                    <div class="vertical-line"></div>
-                    <p class="text-xl">{{ weatherData.weather[0].description }}</p>
-                    <div class="vertical-line"></div>
-                    <p class="text-4xl text-white">{{ weatherData.main.temp }}°C</p>
+                    <!-- <div class="vertical-line"></div> -->
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="vertical-line"></div>
+                    </div>
+
+                    <!-- <div class="vertical-line"></div> -->
+                    <div class="flex flex-col items-center justify-center w-36 text-4xl text-white">
+                        {{ weatherData.main.temp }}°C
+                    </div>
+
                 </div>
                 <div class="current-conditions px-20">
                     <hr class=" border-white border-opacity-200 border-2 w-full " />
                 </div>
             </div>
         </div>
-        <div class="forecast py-4 bg-weather-data text-white">
+        <div class="forecast py-4 bg-weather-data text-white text-lg">
             <ul>
                 <li>Temp Min: {{ weatherData.main.temp_min }}°c</li>
                 <li>Temp Max: {{ weatherData.main.temp_min }}°c</li>
@@ -190,7 +202,7 @@ console.log(iconUrl);
 
 .vertical-line {
     border: solid 1px;
-    height: 50px;
+    height: 5rem;
     border-color: white;
 }
 </style>

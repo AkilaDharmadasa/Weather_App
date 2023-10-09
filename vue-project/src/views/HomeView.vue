@@ -2,7 +2,7 @@
   <div>
     <div class="container mx-auto">
       <main class="flex flex-col gap-4">
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div
             class="city-card bg-weather-secondary text-black hover:text-white transition duration-200 ease-in-out"
             v-for="city in weatherData" :key="city.id" @click="previewCity(city.id)">
