@@ -13,10 +13,15 @@ module.exports = {
         "weather-data": "#373B47", 
         "weather-primary": "#00668A",
         "weather-secondary": "#004E71",
+        "weather-bg-blue": "#388DE7",
+        "weather-bg-red": "#9C3A39",
+        "weather-bg-yellow": "#DE934F",
+        "weather-bg-purple": "#6249CB",
+        "weather-bg-green": "#40B781",
       }
     },
     container: {
-      padding: "2rem",
+      padding: "1rem",
       center: true,
     },
     screens: {

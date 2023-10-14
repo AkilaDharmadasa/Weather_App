@@ -14,4 +14,5 @@ const cityData = {
 // Extract city codes and export the array
 const cityCodes = cityData.List.map(city => city.CityCode);
 
+// module.exports = cityCodes;
 export default cityCodes;
