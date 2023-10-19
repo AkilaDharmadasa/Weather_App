@@ -1,6 +1,12 @@
 <template>
     <div>
-        <div class="container" v-if="weatherData.length">
+        <div class="container flex flex-col py-10" v-if="isLoading">
+            Loading Dashboard ..............
+        </div>
+        <div class="container flex flex-col py-10" v-else-if="showError">
+            <Error />
+        </div>
+        <div class="container" v-else>
             <main class="flex flex-col gap-2 ">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
                     <DashboardCard v-for="city in weatherData" :key="city.id" :cityName=city.name :cityID=city.id
@@ -8,13 +14,7 @@
 
                 </div>
             </main>
-        </div>
-        <div class="container flex flex-col py-10" v-else-if="showError">
-            <Error />
-        </div>
-        <div class="container flex flex-col py-10" v-else>
-            Loading ..............
-        </div>
+        </div>   
     </div>
 </template>
   
@@ -93,6 +93,7 @@ const fetchWeatherData = async () => {
         });
 
     } catch (error) {
+        showError.value = true;
         console.log('Error fetching weather data:', error);
         //   return "error";
     }
@@ -100,15 +101,22 @@ const fetchWeatherData = async () => {
 
 // On mount, to fetch the weather data
 const showError = ref(false);
+const isLoading = ref(true);
+
 onMounted(async () => {
-    await fetchWeatherData();
-    setTimeout(() => {
-        // for each of the responses
-        weatherData.value.forEach((response) => {
-            // console.log(count)
-        });
+    try {
+        // console.log("calling api 8 times");
+        await fetchWeatherData();
+
+    } catch (error) {
+        console.log(error);
+        isLoading.value = false;
         showError.value = true;
-    }, 2000);
+    } finally {
+        isLoading.value = false;
+        console.log(isLoading.value);
+        // console.log("finally length of weatherData array", weatherData.value.length);
+    }
 });
 
 // at click of a city card to route to city view

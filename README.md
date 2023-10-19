@@ -14,10 +14,10 @@ Note: the application will not work without the VITE_APP_API_KEY
 
 <h2>Commands for docker:</h2>
 
-"docker build -t image-1 ."
+"docker build -t image-1 . "
 (replace image-1 with the image name you want)
 
-"docker run -it -p --rm --name vueapp-1 image-1"
+"docker run -it -p 8080:8080 --rm --name vueapp-1 image-1"
 (replace vueapp-1 with a name you want)
 
 Then go to the browser and go to "localhost:8080" <be>

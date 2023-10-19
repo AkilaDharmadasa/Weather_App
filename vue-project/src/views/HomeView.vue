@@ -20,10 +20,10 @@ import Dashboard from '../components/Dashboard.vue';
 
 const loading = ref(true);
 
-onMounted(() => {
-  // Simulate an API call or some asynchronous operation
-  setTimeout(() => {
-    loading.value = false; // Set loading to false after 5 seconds
-  }, 5000);
-});
+// onMounted(() => {
+//   // Simulate an API call or some asynchronous operation
+//   setTimeout(() => {
+//     loading.value = false; // Set loading to false after 3 seconds
+//   }, 3000);
+// });
 </script>
