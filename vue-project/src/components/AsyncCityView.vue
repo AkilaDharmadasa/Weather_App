@@ -60,7 +60,7 @@
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
-import swal from 'Sweetalert2'
+// import swal from 'Sweetalert2'
 
 
 const time = ref(new Date().toLocaleTimeString());
