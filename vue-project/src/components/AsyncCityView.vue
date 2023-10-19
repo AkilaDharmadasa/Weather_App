@@ -35,15 +35,15 @@
                 </div>
             </div>
         </div>
-        <div class="forecast py-4 bg-weather-data text-white text-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+        <div class="forecast py-4 bg-weather-data text-white text-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             <div class="flex border-r-0 sm:border-r-2">Temp Min: {{ weatherData.main.temp_min }}°c</div>
-            <div class="flex border-r-0 md:border-r-2 sm:border-r-0">Temp Max: {{ weatherData.main.temp_min }}°c</div>
-            <div class="hidden border-r-0 sm:border-r-2 md:flex">Pressure: {{ weatherData.main.pressure }}hPa</div>
-            <div class="flex border-r-0 sm:border-r-2">Humidity: {{ weatherData.main.humidity }}%</div>
+            <div class="hidden md:flex border-r-0 sm:border-r-2"><i class="fa-solid fa-location-arrow"></i></div>
+            <div class="flex border-r-0 md:border-r-0 sm:border-r-0">Humidity: {{ weatherData.main.humidity }}%</div>
+            <div class="flex border-r-0 sm:border-r-2">Temp Max: {{ weatherData.main.temp_min }}°c</div>
+            <div class="flex border-r-0 md:border-r-2 sm:border-r-0">Wind: {{ weatherData.wind.speed }}m/s {{ weatherData.wind.deg }}°</div>
+            <div class="flex border-r-0 md:border-r-0 sm:border-r-2">Sunrise: {{ formattedsunrise }}</div>
+            <div class="flex border-r-0 md:border-r-2 sm:border-r-0">Pressure: {{ weatherData.main.pressure }}hPa</div>
             <div class="flex border-r-0 sm:border-r-2">Visibility: {{ weatherData.visibility }}</div>
-            <div class="flex border-r-0 md:border-r-2 sm:border-r-0">Wind: {{ weatherData.wind.speed }}m/s {{
-                weatherData.wind.deg }}°</div>
-            <div class="flex border-r-0 sm:border-r-2">Sunrise: {{ formattedsunrise }}</div>
             <div class="flex border-r-0 sm:border-r-2">Sunset: {{ formattedsunset }}</div>
         </div>
     </div>

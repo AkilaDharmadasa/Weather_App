@@ -161,9 +161,9 @@
   border-right: none;
 }
 
-.forecast div:nth-child(4) {
+/* .forecast div:nth-child(4) {
   border-right: none;
-}
+} */
 
 .vertical-line {
   border: solid 1px;

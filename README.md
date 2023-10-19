@@ -24,4 +24,4 @@ Then go to the browser and go to "localhost:8080" <be>
 <h3>App Views</h3><br>
 <img src="vue-project/public/images/dashboard_new.png"> <be>
 <br>
-<img src="vue-project/public/images/city_new.png">
+<img src="vue-project/public/images/city_new2.png">
