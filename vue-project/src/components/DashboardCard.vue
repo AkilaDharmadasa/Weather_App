@@ -1,7 +1,4 @@
 <template>
-    <!-- <div class="city-card text-black hover:text-white transition duration-200 ease-in-out"
-    @click="previewCity(cityID)" :class="bg">
-</div> -->
     <div class="city-card text-black hover:text-white transition duration-200 ease-in-out" @click="previewCity(cityID)"
         :class="bg">
         <div class="city-bg flex flex-col justify-between">
@@ -74,6 +71,7 @@ export default {
     props: ['cityID', 'country', 'bg', 'city'],
     methods: {
         previewCity(key) {
+            // at click of a city card to route to city view
             this.$router.push({
                 name: "cityView",
                 params: { city_id: key },

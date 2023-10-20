@@ -1,5 +1,11 @@
 <template>
-    <div class="container flex flex-col pt-10 pb-4" v-if="weatherData != 'error'">
+    <div class="container flex flex-col pt-10 pb-4" v-if="isLoading">
+        Loading City Data ..............
+    </div>
+    <div class="container flex flex-col py-10" v-else-if="showError">
+        <Error />
+    </div>
+    <div class="container flex flex-col pt-10 pb-4" v-else>
         <div class="weather-app bg-weather-city">
             <div class="container flex flex-col
             items-center gap-4 text-white py-2 text-2xl">
@@ -40,15 +46,13 @@
             <div class="hidden md:flex border-r-0 sm:border-r-2"><i class="fa-solid fa-location-arrow"></i></div>
             <div class="flex border-r-0 md:border-r-0 sm:border-r-0">Humidity: {{ weatherData.main.humidity }}%</div>
             <div class="flex border-r-0 sm:border-r-2">Temp Max: {{ weatherData.main.temp_min }}°c</div>
-            <div class="flex border-r-0 md:border-r-2 sm:border-r-0">Wind: {{ weatherData.wind.speed }}m/s {{ weatherData.wind.deg }}°</div>
+            <div class="flex border-r-0 md:border-r-2 sm:border-r-0">Wind: {{ weatherData.wind.speed }}m/s {{
+                weatherData.wind.deg }}°</div>
             <div class="flex border-r-0 md:border-r-0 sm:border-r-2">Sunrise: {{ formattedsunrise }}</div>
             <div class="flex border-r-0 md:border-r-2 sm:border-r-0">Pressure: {{ weatherData.main.pressure }}hPa</div>
             <div class="flex border-r-0 sm:border-r-2">Visibility: {{ weatherData.visibility }}</div>
             <div class="flex border-r-0 sm:border-r-2">Sunset: {{ formattedsunset }}</div>
         </div>
-    </div>
-    <div class="container flex flex-col py-10" v-else>
-        404 ERROR
     </div>
 </template>
 
@@ -60,16 +64,22 @@
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
-// import swal from 'Sweetalert2'
+import Error from './Error.vue';
+import { getDateTime, getTime } from '../assets/js/timeFormatter';
 
 
-const time = ref(new Date().toLocaleTimeString());
+// const time = ref(new Date().toLocaleTimeString());
+
+
 const formattedTime = ref('');
 const formattedsunrise = ref('');
 const formattedsunset = ref('');
 
 const route = useRoute();
 const cityId = route.query.id;
+const isLoading = ref(true);
+const showError = ref(false);
+
 
 const getWeatherData = async (id_1) => {
 
@@ -82,63 +92,36 @@ const getWeatherData = async (id_1) => {
         console.log(weatherData.status)
 
         if (weatherData.status == 200) {
-            // // cal current date & time
-            const localOffset = new Date().getTimezoneOffset() * 60000;
-            const utc = weatherData.data.dt * 1000 + localOffset;
-            const localTime = new Date(utc);
 
-            // sunrise
-            const localOffset_sunrise = new Date().getTimezoneOffset() * 60000;
-            const utc_sunrise = weatherData.data.sys.sunrise * 1000 + localOffset_sunrise;
-            const localTime_sunrise = new Date(utc_sunrise);
-
-            // sunset
-            const localOffset_sunset = new Date().getTimezoneOffset() * 60000;
-            const utc_sunset = weatherData.data.sys.sunset * 1000 + localOffset_sunset;
-            const localTime_sunset = new Date(utc_sunset);
+            // calculating time data
+            formattedTime.value = getDateTime(weatherData.data.dt);
+            formattedsunrise.value = getTime(weatherData.data.sys.sunrise);
+            formattedsunset.value = getTime(weatherData.data.sys.sunset);
 
             // Update the formattedTime ref with the local time
-            const istFormatter = new Intl.DateTimeFormat('en-IN', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            });
-            formattedTime.value = istFormatter.format(localTime);
-
-            formattedTime.value += `, ${localTime.toLocaleDateString('en-IN', {
-                month: 'short',
-                day: 'numeric',
-            })}`;
-
-            // Update the formattedsunrise ref with the local time
-            formattedsunrise.value = localTime_sunrise.toLocaleTimeString('en-IN', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            });
-
-            // Update the formattedsunset ref with the local time
-            formattedsunset.value = localTime_sunset.toLocaleTimeString('en-IN', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            });
+            // const istFormatter = new Intl.DateTimeFormat('en-IN', {
+            //     hour: 'numeric',
+            //     minute: 'numeric',
+            //     hour12: true,
+            // });
 
             return weatherData.data;
         } else {
+            showError.value = true;
             console.log("API error");
         }
 
     } catch (err) {
         console.log(err);
-        // swal.fire("hello world");
-        // return "error";
+        showError.value = true;
+    } finally {
+        isLoading.value = false;
     }
 };
 
 const weatherData = await getWeatherData(route.query.id);
 let iconUrl = "";
-if (weatherData != "error") {
+if (showError.value != true && isLoading.value != true) {
     iconUrl = `https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`;
 }
 

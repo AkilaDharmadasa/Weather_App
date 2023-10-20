@@ -14,7 +14,7 @@
 
                 </div>
             </main>
-        </div>   
+        </div>
     </div>
 </template>
   
@@ -26,6 +26,7 @@ import { useRouter } from 'vue-router';
 import Error from './Error.vue';
 import DashboardCard from './DashboardCard.vue';
 import cityCodes from "../assets/js/cities";
+import { getDateTime, getTime } from '../assets/js/timeFormatter';
 
 const router = useRouter();
 const weatherData = ref([]);
@@ -45,49 +46,10 @@ const fetchWeatherData = async () => {
         weatherData.value = weatherResponses.map(response => {
             const { dt, id, name, weather, main, sys, visibility, wind } = response.data;
 
-            // cal current date & time
-            const localOffset = new Date().getTimezoneOffset() * 60000;
-            const utc = dt * 1000 + localOffset;
-            const localTime = new Date(utc);
-
-            // sunrise
-            const utc_sunrise = sys.sunrise * 1000 + localOffset;
-            const localTime_sunrise = new Date(utc_sunrise);
-
-            // sunset
-            const utc_sunset = sys.sunset * 1000 + localOffset;
-            const localTime_sunset = new Date(utc_sunset);
-
-            const formattedTime = ref('');
-            const formattedsunrise = ref('');
-            const formattedsunset = ref('');
-
-            // Update the formattedTime ref with the local time
-            formattedTime.value = localTime.toLocaleTimeString('en-IN', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            });
-
-
-            formattedTime.value += `, ${localTime.toLocaleDateString('en-IN', {
-                month: 'short',
-                day: 'numeric',
-            })}`;
-
-            // Update the formattedsunrise ref with the local time
-            formattedsunrise.value = localTime_sunrise.toLocaleTimeString('en-IN', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            });
-
-            // Update the formattedsunset ref with the local time
-            formattedsunset.value = localTime_sunset.toLocaleTimeString('en-IN', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            });
+            // setting time values
+            const formattedTime = getDateTime(dt);
+            const formattedsunrise = getTime(sys.sunrise);
+            const formattedsunset = getTime(sys.sunset);
 
             return { dt, id, name, weather, main, sys, visibility, wind, formattedTime, formattedsunrise, formattedsunset };
         });
@@ -114,24 +76,11 @@ onMounted(async () => {
         showError.value = true;
     } finally {
         isLoading.value = false;
-        console.log(isLoading.value);
         // console.log("finally length of weatherData array", weatherData.value.length);
     }
 });
 
-// at click of a city card to route to city view
-const previewCity = (cityID) => {
-    // console.log(cityID);
-    router.push({
-        name: "cityView",
-        params: { city_id: cityID },
-        query: {
-            id: cityID,
-            preview: true,
-        }
-    });
-};
-
+// changing the card bg colors
 const colorClasses = [
     "bg-weather-bg-blue",
     "bg-weather-bg-purple",
@@ -140,10 +89,10 @@ const colorClasses = [
     "bg-weather-bg-red",
 ];
 
-const randomIndex = ref(0);
+let randomIndex = 0;
 const getRandomColorClass = () => {
-    const index = randomIndex.value;
-    randomIndex.value = (index + 1) % colorClasses.length;
+    const index = randomIndex;
+    randomIndex = (index + 1) % colorClasses.length;
     return colorClasses[index];
 };
 
